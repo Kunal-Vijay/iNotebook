@@ -8,4 +8,6 @@ const userSchema = new Schema({
     date : {type:Date,default:Date.now},
 });
 
-module.exports = mongoose.model('user',userSchema);
+const User =  mongoose.model('user',userSchema);
+User.createIndexes(); //  creates indexing to check unique entry
+module.exports = User;
