@@ -49,11 +49,11 @@ export default function Notes() {
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="e_title" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="e_title" name='e_title' value={note.e_title} onChange={onChange} />
+                                    <input type="text" className="form-control" id="e_title" name='e_title' value={note.e_title} onChange={onChange} minLength={3} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="e_description" className="form-label">Description</label>
-                                    <input type="text" className="form-control" id="e_description" name='e_description' value={note.e_description} onChange={onChange} />
+                                    <input type="text" className="form-control" id="e_description" name='e_description' value={note.e_description} onChange={onChange} minLength={5} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="e_tag" className="form-label">Tag</label>
@@ -63,13 +63,14 @@ export default function Notes() {
                         </div>
                         <div className="modal-footer">
                             <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
+                            <button disabled={note.e_title.length<3||note.e_description.length<5} onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div className='row my-3'>
                 <h1>Your Notes</h1>
+                {notes.length===0 && <p>No notes to display</p>}
                 {notes.map((note) => {
                     return <NoteItem key={note._id} updateNote={updateNote} note={note} />
                 })}
