@@ -8,6 +8,7 @@ import About from './pages/About';
 import Home from './pages/Home';
 import Navbar from "./components/Navbar";
 import NoteState from "./context/notes/noteState";
+import Alert from "./components/Alert";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
+          <Alert/>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
