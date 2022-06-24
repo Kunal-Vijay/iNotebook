@@ -14,11 +14,7 @@ export default function AddNote() {
         addNote(note.title,note.description,note.tag);
     }
     return (
-<<<<<<< HEAD
         <div className='my-3'  >
-=======
-        <div className='container my-3'  >
->>>>>>> e7d3a92d6bf62c1591806480a128f07a09a8b8d4
             <h1>Add Notes</h1>
             <form>
                 <div className="mb-3">

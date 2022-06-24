@@ -1,8 +1,12 @@
 import React from 'react'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Edit from '@mui/icons-material/Edit';
+import { useContext } from 'react';
+import noteContext from '../context/notes/noteContext';
 
 export default function NoteItem(props) {
+    const context = useContext(noteContext);
+    const { deleteNote } = context;
     const { note } = props;
     return (
         <div className='col-md-3'>
@@ -11,7 +15,7 @@ export default function NoteItem(props) {
                     <div className="d-flex justify-content-between">
                         <h5 className="card-title">{note.title}</h5>
                         <div className="row">
-                            <div className='col-md-5 '>
+                            <div className='col-md-5 ' onClick={()=>{deleteNote(note._id)}}>
                                 <DeleteOutlinedIcon />
                             </div>
                             <div className='col-md-5 '>
