@@ -20,10 +20,11 @@ router.post(
     }), // password should be minimum of 8 chars
   ],
   async (req, res) => {
+    let success = false;
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ success, errors: errors.array() });
     }
     // check whether user email exist
     try {
@@ -31,7 +32,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ error: "Email has already been taken. Use another email." });
+          .json({ success, error: "Email has already been taken. Use another email." });
       }
 
       const salt = await bcrypt.genSalt(10);
@@ -50,7 +51,8 @@ router.post(
       };
 
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      success = true;
+      res.json({ success, authToken });
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Internal Server Error");
@@ -75,7 +77,8 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({ success,
+        return res.status(400).json({
+          success,
           error:
             "Incorrect Username or Password : Please try to login with credentials",
         });
@@ -83,7 +86,8 @@ router.post(
 
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
-        return res.status(400).json({ success,
+        return res.status(400).json({
+          success,
           error:
             "Incorrect Username or Password : Please try to login with credentials",
         });
@@ -96,8 +100,8 @@ router.post(
       };
 
       const authToken = jwt.sign(data, JWT_SECRET);
-      success=true;
-      res.json({ success,authToken });
+      success = true;
+      res.json({ success, authToken });
     } catch (error) {
       console.log({ error: error.message });
       res.status(500).send("Internal Server Error");
