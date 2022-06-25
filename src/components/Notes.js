@@ -6,7 +6,8 @@ import noteContext from '../context/notes/noteContext';
 import NoteItem from './NoteItem';
 
 
-export default function Notes() {
+export default function Notes(props) {
+    const {showAlert}=props;
     const context = useContext(noteContext);
     const { notes, fetchNotes, editNote } = context;
     useEffect(() => {
@@ -19,7 +20,7 @@ export default function Notes() {
 
     const updateNote = (currentNote) => {
         refEdit.current.click();
-        setNote({ id: currentNote._id, e_title: currentNote.title, e_description: currentNote.description, e_tag: currentNote.tag })
+        setNote({ id: currentNote._id, e_title: currentNote.title, e_description: currentNote.description, e_tag: currentNote.tag });
     }
     const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value })
@@ -29,6 +30,7 @@ export default function Notes() {
         e.preventDefault();
         editNote(note.id, note.e_title, note.e_description, note.e_tag);
         refClose.current.click();
+        showAlert("Note updated successfully","success");
     }
     return (
         <>
@@ -72,7 +74,7 @@ export default function Notes() {
                 <h1>Your Notes</h1>
                 {notes.length===0 && <p>No notes to display</p>}
                 {notes.map((note) => {
-                    return <NoteItem key={note._id} updateNote={updateNote} note={note} />
+                    return <NoteItem key={note._id} showAlert={showAlert} updateNote={updateNote} note={note} />
                 })}
             </div>
         </>

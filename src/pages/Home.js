@@ -2,11 +2,12 @@ import React from 'react';
 import AddNote from '../components/AddNote';
 import Notes from '../components/Notes';
 
-const Home = () => {
+const Home = (props) => {
+  const {showAlert} = props;
   return (
    <div className='container'>
-    <AddNote/>
-    <Notes/>
+    <AddNote showAlert={showAlert}/>
+    <Notes showAlert={showAlert}/>
    </div>
   )
 }

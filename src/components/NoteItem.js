@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import noteContext from '../context/notes/noteContext';
 
 export default function NoteItem(props) {
+    const {showAlert}=props;
     const context = useContext(noteContext);
     const { deleteNote } = context;
     const { note, updateNote } = props;
@@ -15,7 +16,8 @@ export default function NoteItem(props) {
                     <div className="d-flex justify-content-between">
                         <h5 className="card-title">{note.title}</h5>
                         <div className="row">
-                            <div className='col-md-5 ' onClick={() => { deleteNote(note._id) }}>
+                            <div className='col-md-5 ' onClick={() => { deleteNote(note._id);
+                            showAlert("Note deleted successfully","success"); }}>
                                 <DeleteOutlinedIcon />
                             </div>
                             <div className='col-md-5 ' onClick={() => { updateNote(note) }}>
