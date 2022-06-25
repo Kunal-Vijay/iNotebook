@@ -33,7 +33,8 @@ export default function Signup(props) {
     setSignup({ ...signup, [e.target.name]: e.target.value })
   }
   return (
-    <div className='container'>
+    <div className='container my-5'>
+      <h1>Creat your iNotebook account</h1>
       <form>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Username</label>

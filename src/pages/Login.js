@@ -33,7 +33,8 @@ export default function Login(props) {
         setLogin({ ...login, [e.target.name]: e.target.value })
     }
     return (
-        <div className='container '>
+        <div className='container my-5 '>
+            <h1>Login to continue to iNotebook</h1>
             <form>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>

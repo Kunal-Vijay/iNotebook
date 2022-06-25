@@ -18,7 +18,7 @@ export default function AddNote(props) {
         showAlert("Note added successfully","success");
     }
     return (
-        <div className='my-3'  >
+        <div className='my-5'  >
             <h1>Add Notes</h1>
             <form>
                 <div className="mb-3">
