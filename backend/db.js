@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const mongoUrl = "mongodb+srv://kunal:anything@cluster0.srzpb.mongodb.net/?retryWrites=true";
+require('dotenv').config();
+const mongoUrl = process.env.Mongo_URL
 
 const connectToMongo = ()=>{
     mongoose.connect(mongoUrl,()=>{
