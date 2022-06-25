@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Login(props) {
     const [login, setLogin] = useState({ email: "", password: "" });
     const navigate = useNavigate();
-    const host = "http://localhost:5000";
+    const host = "https://inotebook-kunal.herokuapp.com";
 
     const handleClick = async (e) => {
         e.preventDefault();
