@@ -66,6 +66,7 @@ router.post(
     body("password", "Password cannot be blank").exists(), // password should be minimum of 8 chars
   ],
   async (req, res) => {
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -74,7 +75,7 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({
+        return res.status(400).json({ success,
           error:
             "Incorrect Username or Password : Please try to login with credentials",
         });
@@ -82,7 +83,7 @@ router.post(
 
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
-        return res.status(400).json({
+        return res.status(400).json({ success,
           error:
             "Incorrect Username or Password : Please try to login with credentials",
         });
@@ -95,7 +96,8 @@ router.post(
       };
 
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      success=true;
+      res.json({ success,authToken });
     } catch (error) {
       console.log({ error: error.message });
       res.status(500).send("Internal Server Error");
@@ -111,7 +113,7 @@ router.post(
     try {
       const userId = req.user.id;
       const user = await User.findById(userId).select("-password"); // getting user details other than password
-      res.send(user );
+      res.send(user);
     } catch (error) {
       console.log({ error: error.message });
       res.status(500).send("Internal Server Error");
