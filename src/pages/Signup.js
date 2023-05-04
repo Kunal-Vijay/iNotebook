@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Signup(props) {
   const [signup, setSignup] = useState({ name: "", email: "", password: "",cpassword: "" });
   const navigate = useNavigate();
-  const host = process.env.REACT_APP_BASE_URL;
+  const host = process.env.BASE_URL;
 
   const handleClick = async (e) => {
     e.preventDefault();
