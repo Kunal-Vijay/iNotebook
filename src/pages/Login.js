@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Login(props) {
     const [login, setLogin] = useState({ email: "", password: "" });
     const navigate = useNavigate();
-    const host = process.env.BASE_URL;
+    const host = process.env.REACT_APP_BASE_URL;
 
 
     const handleClick = async (e) => {
