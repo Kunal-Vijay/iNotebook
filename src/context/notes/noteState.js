@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NoteContext from './noteContext';
 
 const NoteState = (props) => {
-    const host = "https://inotebook-kunal.herokuapp.com";
+    const host = "https://inotebook-backend-i19k.onrender.com";
     
     const [notes, setNotes] = useState([]);
 
