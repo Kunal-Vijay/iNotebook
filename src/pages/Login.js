@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 export default function Login(props) {
     const [login, setLogin] = useState({ email: "", password: "" });
     const navigate = useNavigate();
-    const host = "https://inotebook-backend-i19k.onrender.com";
+    const host = process.env.BASE_URL;
+
 
     const handleClick = async (e) => {
         e.preventDefault();
