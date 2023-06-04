@@ -1,7 +1,6 @@
 import React from 'react'
 import { useContext, useState } from 'react';
 import noteContext from '../context/notes/noteContext';
-import Notes from './Notes';
 
 export default function AddNote(props) {
     const {showAlert} = props;
@@ -18,7 +17,7 @@ export default function AddNote(props) {
         showAlert("Note added successfully","success");
     }
     return (
-        <div className='my-5'  >
+        <div className='my-5 glass p-3'  >
             <h1>Add Notes</h1>
             <form>
                 <div className="mb-3">

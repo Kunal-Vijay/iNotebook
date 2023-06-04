@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "../App.css"
+
 
 export default function Login(props) {
     const [login, setLogin] = useState({ email: "", password: "" });
@@ -33,7 +35,7 @@ export default function Login(props) {
         setLogin({ ...login, [e.target.name]: e.target.value })
     }
     return (
-        <div className='container my-5 '>
+        <div className='container my-5  glass p-3'>
             <h1>Login to continue to iNotebook</h1>
             <form>
                 <div className="mb-3">

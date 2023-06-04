@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "../App.css"
+
 
 export default function Signup(props) {
   const [signup, setSignup] = useState({ name: "", email: "", password: "",cpassword: "" });
@@ -33,7 +35,7 @@ export default function Signup(props) {
     setSignup({ ...signup, [e.target.name]: e.target.value })
   }
   return (
-    <div className='container my-5'>
+    <div className='container my-5 glass p-3'>
       <h1>Creat your iNotebook account</h1>
       <form>
         <div className="mb-3">
